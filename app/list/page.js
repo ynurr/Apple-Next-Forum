@@ -9,20 +9,20 @@ export default async function List() {
     console.log(result)
 
     return (
-      <div className="list-bg">
-        {
-            result.map((a,i)=>{
-                return (
-                    <div className="list-item" key={i}>
-                        <Link prefetch={false} href={'/detail/'+result[i]._id}>
-                            <h4>{result[i].title}</h4>
-                        </Link>
-                        <DetailLink/>
-                        <p>{result[i].content}</p>
-                    </div>
-                )
-            })
-        }
-      </div>
+        <div className="list-bg">
+            {
+                result.map((a,i)=>{
+                    return (
+                        <div className="list-item" key={i}>
+                            <Link prefetch={false} href={'/detail/'+result[i]._id}>
+                                <h4>{result[i].title}</h4>
+                            </Link>
+                            <DetailLink/>
+                            <p>{result[i].content}</p>
+                        </div>
+                    )
+                })
+            }
+        </div>
     )
-  } 
+} 
