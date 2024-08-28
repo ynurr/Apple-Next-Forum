@@ -1,17 +1,31 @@
 import { connectDB } from "@/util/database"
 import { ObjectId } from "mongodb"
+import { getServerSession } from "next-auth"
+import { authOptions } from "../auth/[...nextauth]"
 
 export default async function handler(요청, 응답) {
     if (요청.method == 'DELETE') {
         try {
-            const db = (await connectDB).db("forum")
-            let result = await db.collection('post').deleteOne({_id : new ObjectId(요청.body)})
-            console.log(result)
+            let session = await getServerSession(요청, 응답, authOptions)
 
-            if (result.deletedCount > 0) {
-                return 응답.status(200).json('삭제 완료')
+            if (session !== null) {
+                const db = (await connectDB).db("forum")
+                let idCheck = await db.collection('post').findOne({_id : new ObjectId(요청.body)})
+    
+                if (session.user.email == idCheck.author) {
+                    let result = await db.collection('post').deleteOne({_id : new ObjectId(요청.body)})
+                    console.log(result)
+        
+                    if (result.deletedCount > 0) {
+                        return 응답.status(200).json('삭제 완료')
+                    } else {
+                        return 응답.status(500).json('삭제 실패')
+                    }
+                } else {
+                    return 응답.status(500).json('현재 사용자와 작성자가 불일치합니다.')
+                }
             } else {
-                return 응답.status(500).json('삭제 실패')
+                응답.status(500).json('로그인하세요.')
             }
         }
         catch (error) {
