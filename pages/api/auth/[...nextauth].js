@@ -53,6 +53,7 @@ export const authOptions = {
         token.user = {};
         token.user.name = user.name
         token.user.email = user.email
+        token.user.role = user.role
       }
       return token;
     },
