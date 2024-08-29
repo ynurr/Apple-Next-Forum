@@ -11,7 +11,6 @@ export default async function handler(요청, 응답) {
             if (session !== null) {
                 const db = (await connectDB).db("forum")
                 let idCheck = await db.collection('post').findOne({_id : new ObjectId(요청.body)})
-                let data = await db.collection('user_cred').findOne({email : idCheck.author})
 
                 if (session.user.email == idCheck.author || session.user.role == 'admin') {
                     let result = await db.collection('post').deleteOne({_id : new ObjectId(요청.body)})
