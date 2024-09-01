@@ -1,6 +1,6 @@
 import { connectDB } from "@/util/database"
 import { ObjectId } from "mongodb"
-import Comment from "./comment"
+import Comment from "./Comment"
 
 export default async function Detail(props) {
 

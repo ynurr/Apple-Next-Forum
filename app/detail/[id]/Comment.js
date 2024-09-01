@@ -18,7 +18,8 @@ export default function Comment(props) {
     
     return (
         <div>
-            <div>댓글</div>
+            <hr></hr>
+            <div><b>댓글</b></div>
             {
                 data.length > 0 ?
                 data.map((a,i)=>{
