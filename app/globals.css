@@ -77,3 +77,13 @@ a {
 .login-btn:hover {
   background-color: #bdc3dd;
 }
+.comment-box {
+    border: solid 1px #dddddd; 
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px 0; 
+}
+
+.comment-box p {
+    margin: 0;
+}

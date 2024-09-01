@@ -24,7 +24,10 @@ export default function Comment(props) {
                 data.length > 0 ?
                 data.map((a,i)=>{
                     return (
-                        <p key={i}>{a.content}</p>
+                        <div className="comment-box" key={i}>
+                            <b>{a.name}</b>
+                            <p>{a.content}</p>
+                        </div>
                     )
                 })
                 : '댓글 없음'
@@ -34,6 +37,12 @@ export default function Comment(props) {
                 fetch('/api/comment/new', {
                     method : 'POST', 
                     body : JSON.stringify({comment : comment, _id : props._id})
+                })
+                .then((r)=>{
+                    return r.json()
+                })
+                .then((r)=>{
+                    setData(r)
                 })
             }}>댓글등록</button>
         </div>
