@@ -12,6 +12,7 @@ export default function Comment(props) {
         .then(r=>r.json())
         .then((result)=>{
             setData(result)
+            console.log(result)
         })
     },[])
 
