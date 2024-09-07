@@ -107,3 +107,15 @@ a {
     cursor: pointer;           /* 클릭 가능한 포인터로 변경 */
     font-size: 0.8em;          /* 작은 폰트 크기 */
 }
+.dark-mode .navbar {
+    background: #222;
+}
+.dark-mode .navbar a {
+    color: white;
+}
+.dark-mode .user-name {
+    color: white;
+}
+.dark-mode .logout-btn, .login-btn {
+    background: rgb(88, 88, 88);
+}
